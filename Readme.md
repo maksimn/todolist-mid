@@ -1,6 +1,6 @@
 # Todolist - Modern iOS Development.
 
-Todolist app developed with modern iOS development stack:
+Todolist app developed using modern iOS development stack:
 
 * SwiftUI
 * Combine
