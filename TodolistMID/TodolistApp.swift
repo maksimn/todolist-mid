@@ -8,10 +8,11 @@
 import SwiftUI
 
 @main
-struct TodolistMIDApp: App {
+struct TodolistApp: App {
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TodolistView()
         }
     }
 }
