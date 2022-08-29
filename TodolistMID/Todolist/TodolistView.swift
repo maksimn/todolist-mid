@@ -13,7 +13,7 @@ struct TodolistView: View {
         NavigationView {
             VStack {
                 Spacer().frame(maxHeight: .infinity)
-                NavigationLink(destination: TodoEditorView()) {
+                NavigationLink(destination: EditorView()) {
                     Image("icon-plus")
                         .resizable()
                         .frame(width: 44, height: 44)
