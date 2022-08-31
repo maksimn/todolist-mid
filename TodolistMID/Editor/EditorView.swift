@@ -5,6 +5,7 @@
 //  Created by Maksim Ivanov on 29.01.2022.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 struct EditorView: View {
@@ -12,107 +13,154 @@ struct EditorView: View {
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
 
-    @State
-    var text: String = ""
+    private let store: Store<EditorState?, EditorAction>
 
-    @State
-    var priority: String = "нет"
-
-    @State
-    var isDeadineSwitchOn: Bool = true
-
-    @State
-    var deadline: Date = Date()
+    init(store: Store<EditorState?, EditorAction>) {
+        self.store = store
+        ViewStore(store).send(EditorAction.initEditor(item: nil))
+    }
 
     var body: some View {
-        ScrollView {
-            TextEditor(text: $text)
-                .cornerRadius(6)
-                .frame(height: 120)
-                .padding(.init(top: 17, leading: 24, bottom: 16, trailing: 24))
-            VStack {
+        WithViewStore(self.store) { viewStore in
+            ScrollView {
+                TextEditor(text: viewStore.binding(get: { $0?.item.text ?? "" }, send: EditorAction.editorTextChanged))
+                    .cornerRadius(6)
+                    .frame(height: 120)
+                    .padding(.init(top: 17, leading: 24, bottom: 16, trailing: 24))
                 VStack {
-                    HStack {
-                        Text("Важность")
-                        Spacer().frame(maxWidth: .infinity)
-                        Picker("Важность", selection: $priority) {
-                            ForEach(["↓", "нет", "!!"], id: \.self) {
-                                Text($0)
+                    VStack {
+                        HStack {
+                            Text("Важность")
+                            Spacer().frame(maxWidth: .infinity)
+                            Picker("Важность", selection: viewStore.binding(
+                                get: { state in
+                                    mapPriorityToString(state?.item.priority ?? .normal)
+                                },
+                                send: { value in
+                                    .editorPriorityChanged(priority: mapStringToPriority(value))
+                                }
+                            )) {
+                                ForEach(["↓", "нет", "!!"], id: \.self) {
+                                    Text($0)
+                                }
                             }
                         }
-                    }
-                    Divider()
-                        .padding(.init(top: 4, leading: -24, bottom: 4, trailing: -24))
-                    HStack {
-                        VStack {
-                            Text("Сделать до")
-                            Button(
-                                action: {},
-                                label: {
-                                    Text("22 Янв 2019")
-                                        .font(.system(size: 14))
+                        Divider()
+                            .padding(.init(top: 4, leading: -24, bottom: 4, trailing: -24))
+                        HStack {
+                            VStack {
+                                Text("Сделать до")
+                                if viewStore.state?.item.deadline != nil {
+                                    Button(
+                                        action: {
+                                            viewStore.send(.toggleDeadlinePickerVisibility)
+                                        },
+                                        label: {
+                                            Text(viewStore.state?.item.deadline?.formattedDate ?? "")
+                                                .font(.system(size: 14))
+                                        }
+                                    )
                                 }
+                            }
+                            Spacer()
+                            Toggle(
+                                "",
+                                isOn: viewStore.binding(
+                                    get: { $0?.item.deadline != nil },
+                                    send: .editorDeadlineChanged(
+                                        deadline: viewStore.state?.item.deadline == nil ? Date() : nil
+                                    )
+                                )
                             )
                         }
-                        Spacer()
-                        Toggle("", isOn: $isDeadineSwitchOn)
                     }
+                    .padding(.init(top: 17, leading: 24, bottom: 16, trailing: 24))
+                    .background(.white)
+                    .cornerRadius(16)
+
+                    if !(viewStore.state?.isDeadlinePickerHidden ?? true) {
+                        DatePicker(
+                            "",
+                            selection: viewStore.binding(
+                                get: { $0?.item.deadline ?? Date(timeIntervalSince1970: 0)},
+                                send: EditorAction.editorDeadlineChanged
+                            ),
+                            displayedComponents: [.date]
+                        )
+                        .padding(.init(top: 0, leading: 24, bottom: 0, trailing: 24))
+                    }
+
+                    HStack {
+                        Spacer()
+                        Button(
+                            action: {
+                                viewStore.send(EditorAction.editorItemDeleted)
+                            },
+                            label: {
+                                Text("Удалить")
+                                    .foregroundColor(
+                                        (viewStore.state?.canItemBeRemoved ?? false) ? Color.red : Color.gray
+                                    )
+                            }
+                        )
+                        .padding(.init(top: 12, leading: 0, bottom: 12, trailing: 0))
+                        Spacer()
+                    }
+                    .background(.white)
+                    .cornerRadius(16)
                 }
-                .padding(.init(top: 17, leading: 24, bottom: 16, trailing: 24))
-                .background(.white)
-                .cornerRadius(16)
-                DatePicker(
-                    "",
-                    selection: $deadline,
-                    displayedComponents: [.date]
-                )
-                .padding(.init(top: 0, leading: 24, bottom: 0, trailing: 24))
-                HStack {
-                    Spacer()
-                    Button(
-                        action: {},
-                        label: {
-                            Text("Удалить")
-                                .foregroundColor(.red)
-                        }
-                    )
-                    .padding(.init(top: 12, leading: 0, bottom: 12, trailing: 0))
-                    Spacer()
-                }
-                .background(.white)
-                .cornerRadius(16)
+                .padding(.init(top: 0, leading: 24, bottom: 16, trailing: 24))
+                Spacer()
             }
-            .padding(.init(top: 0, leading: 24, bottom: 16, trailing: 24))
-            Spacer()
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitle(Text("Дело"), displayMode: .inline)
-        .navigationBarItems(
-            leading: Button(
-                action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                },
-                label: {
-                    Text("Отменить")
-                }
-            ),
-            trailing: Button(
-                action: {},
-                label: {
-                    Text("Сохранить")
-                        .foregroundColor(.gray)
-                }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitle(Text("Дело"), displayMode: .inline)
+            .navigationBarItems(
+                leading: Button(
+                    action: {
+                        viewStore.send(EditorAction.close)
+                        self.presentationMode.wrappedValue.dismiss()
+                    },
+                    label: {
+                        Text("Отменить")
+                    }
+                ),
+                trailing: Button(
+                    action: {
+                        viewStore.send(EditorAction.editorItemSaved)
+                    },
+                    label: {
+                        Text("Сохранить")
+                            .foregroundColor(
+                                (viewStore.state?.canItemBeSaved ?? false) ? Color.blue : Color.gray
+                            )
+                    }
+                )
             )
-        )
-        .background(Color(red: 0.97, green: 0.97, blue: 0.95))
-        .pickerStyle(.segmented)
-        .datePickerStyle(.graphical)
+            .background(Color(red: 0.97, green: 0.97, blue: 0.95))
+            .pickerStyle(.segmented)
+            .datePickerStyle(.graphical)
+        }
     }
 }
 
-struct EditorView_Previews: PreviewProvider {
+private func mapStringToPriority(_ str: String) -> TodoItemPriority {
+    switch str {
+    case "↓":
+        return .low
+    case "!!":
+        return .high
+    default:
+        return .normal
+    }
+}
 
-    static var previews: some View {
-        EditorView()
+private func mapPriorityToString(_ priority: TodoItemPriority) -> String {
+    switch priority {
+    case .low:
+        return "↓"
+    case .high:
+        return "!!"
+    default:
+        return "нет"
     }
 }
