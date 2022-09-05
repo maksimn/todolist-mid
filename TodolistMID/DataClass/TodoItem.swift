@@ -13,7 +13,7 @@ enum TodoItemPriority: String {
     case low
 }
 
-struct TodoItem: Equatable {
+struct TodoItem: Equatable, Identifiable {
 
     let id: String
     let text: String

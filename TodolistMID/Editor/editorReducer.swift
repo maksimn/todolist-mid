@@ -95,7 +95,7 @@ private func nextStateForToggleDeadlinePickerVisibilityAction(_ state: EditorSta
     guard let state = state else { return state }
     var newState = state
 
-    newState.isDeadlinePickerHidden = !state.isDeadlinePickerHidden
+    newState.isDeadlinePickerHidden.toggle()
 
     return newState
 }
