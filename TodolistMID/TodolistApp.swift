@@ -28,7 +28,7 @@ struct TodolistApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TodolistView(
+            TodoListView(
                 store: Store(
                     initialState: initialTodoListState,
                     reducer: reducer,

@@ -23,9 +23,10 @@
 		0C66877D28BF57970007538E /* EditorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C66877C28BF57970007538E /* EditorAction.swift */; };
 		0C66877F28BF59810007538E /* EditorEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C66877E28BF59810007538E /* EditorEnvironment.swift */; };
 		0C66878128BF5C4B0007538E /* editorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C66878028BF5C4B0007538E /* editorReducer.swift */; };
-		0C6C38A027A777F300E8C9F2 /* TodolistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6C389F27A777F300E8C9F2 /* TodolistView.swift */; };
+		0C6C38A027A777F300E8C9F2 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6C389F27A777F300E8C9F2 /* TodoListView.swift */; };
 		0C9F117F27A570B500FD3A95 /* JsonCoderImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F117E27A570B500FD3A95 /* JsonCoderImplTests.swift */; };
 		0CA58FC528C06F4200A68BCD /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA58FC428C06F4200A68BCD /* NavigationLazyView.swift */; };
+		0CD2283728C783C200913DD3 /* TodoListView+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD2283628C783C200913DD3 /* TodoListView+Preview.swift */; };
 		0CE40B3A27A5DA5900E5EF9D /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE40B3927A5DA5900E5EF9D /* EditorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,9 +66,10 @@
 		0C66877C28BF57970007538E /* EditorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorAction.swift; sourceTree = "<group>"; };
 		0C66877E28BF59810007538E /* EditorEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorEnvironment.swift; sourceTree = "<group>"; };
 		0C66878028BF5C4B0007538E /* editorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editorReducer.swift; sourceTree = "<group>"; };
-		0C6C389F27A777F300E8C9F2 /* TodolistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodolistView.swift; sourceTree = "<group>"; };
+		0C6C389F27A777F300E8C9F2 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		0C9F117E27A570B500FD3A95 /* JsonCoderImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonCoderImplTests.swift; sourceTree = "<group>"; };
 		0CA58FC428C06F4200A68BCD /* NavigationLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLazyView.swift; sourceTree = "<group>"; };
+		0CD2283628C783C200913DD3 /* TodoListView+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoListView+Preview.swift"; sourceTree = "<group>"; };
 		0CE40B3927A5DA5900E5EF9D /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,7 +178,8 @@
 		0C6C389E27A777D500E8C9F2 /* Todolist */ = {
 			isa = PBXGroup;
 			children = (
-				0C6C389F27A777F300E8C9F2 /* TodolistView.swift */,
+				0C6C389F27A777F300E8C9F2 /* TodoListView.swift */,
+				0CD2283628C783C200913DD3 /* TodoListView+Preview.swift */,
 				0C521E9028C1DECA00EA4334 /* TodoListState.swift */,
 				0C521E9228C1DF1F00EA4334 /* TodoListAction.swift */,
 				0C521E9428C1DFF100EA4334 /* TodoListEnvironment.swift */,
@@ -379,7 +382,8 @@
 				0C66877B28BF53BB0007538E /* Date+Core.swift in Sources */,
 				0CA58FC528C06F4200A68BCD /* NavigationLazyView.swift in Sources */,
 				0C16DC7027A43F120033CAC3 /* TodolistApp.swift in Sources */,
-				0C6C38A027A777F300E8C9F2 /* TodolistView.swift in Sources */,
+				0C6C38A027A777F300E8C9F2 /* TodoListView.swift in Sources */,
+				0CD2283728C783C200913DD3 /* TodoListView+Preview.swift in Sources */,
 				0C521E9128C1DECA00EA4334 /* TodoListState.swift in Sources */,
 				0C66877828BF53850007538E /* TodoItem.swift in Sources */,
 				0C521E9728C1E01900EA4334 /* todoListReducer.swift in Sources */,
