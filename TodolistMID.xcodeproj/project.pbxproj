@@ -27,6 +27,7 @@
 		0C9F117F27A570B500FD3A95 /* JsonCoderImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F117E27A570B500FD3A95 /* JsonCoderImplTests.swift */; };
 		0CA58FC528C06F4200A68BCD /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA58FC428C06F4200A68BCD /* NavigationLazyView.swift */; };
 		0CD2283728C783C200913DD3 /* TodoListView+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD2283628C783C200913DD3 /* TodoListView+Preview.swift */; };
+		0CD2283928C7AF7200913DD3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD2283828C7AF7100913DD3 /* Theme.swift */; };
 		0CE40B3A27A5DA5900E5EF9D /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE40B3927A5DA5900E5EF9D /* EditorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		0C9F117E27A570B500FD3A95 /* JsonCoderImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonCoderImplTests.swift; sourceTree = "<group>"; };
 		0CA58FC428C06F4200A68BCD /* NavigationLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLazyView.swift; sourceTree = "<group>"; };
 		0CD2283628C783C200913DD3 /* TodoListView+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoListView+Preview.swift"; sourceTree = "<group>"; };
+		0CD2283828C7AF7100913DD3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		0CE40B3927A5DA5900E5EF9D /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +129,7 @@
 				0CE40B3827A5DA3F00E5EF9D /* Editor */,
 				0C6C389E27A777D500E8C9F2 /* Todolist */,
 				0C16DC6F27A43F120033CAC3 /* TodolistApp.swift */,
+				0CD2283828C7AF7100913DD3 /* Theme.swift */,
 				0C16DC7327A43F150033CAC3 /* Assets.xcassets */,
 				0C16DC7527A43F150033CAC3 /* Preview Content */,
 			);
@@ -382,6 +385,7 @@
 				0C66877B28BF53BB0007538E /* Date+Core.swift in Sources */,
 				0CA58FC528C06F4200A68BCD /* NavigationLazyView.swift in Sources */,
 				0C16DC7027A43F120033CAC3 /* TodolistApp.swift in Sources */,
+				0CD2283928C7AF7200913DD3 /* Theme.swift in Sources */,
 				0C6C38A027A777F300E8C9F2 /* TodoListView.swift in Sources */,
 				0CD2283728C783C200913DD3 /* TodoListView+Preview.swift in Sources */,
 				0C521E9128C1DECA00EA4334 /* TodoListState.swift in Sources */,
