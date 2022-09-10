@@ -15,9 +15,9 @@ struct EditorView: View {
 
     private let store: Store<EditorState?, EditorAction>
 
-    init(store: Store<EditorState?, EditorAction>) {
+    init(store: Store<EditorState?, EditorAction>, initialItem: TodoItem?) {
         self.store = store
-        ViewStore(store).send(EditorAction.initEditor(item: nil))
+        ViewStore(store).send(EditorAction.initEditor(item: initialItem))
     }
 
     var body: some View {

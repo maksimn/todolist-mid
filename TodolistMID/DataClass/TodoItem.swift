@@ -15,6 +15,7 @@ enum TodoItemPriority: String {
 
 struct TodoItem: Equatable, Identifiable {
 
+    let persId: String
     let id: String
     let text: String
     let priority: TodoItemPriority
@@ -24,7 +25,8 @@ struct TodoItem: Equatable, Identifiable {
     let updatedAt: Int
     let isDirty: Bool
 
-    init(id: String = UUID().uuidString,
+    init(persId: String = UUID().uuidString,
+         id: String = UUID().uuidString,
          text: String = "",
          priority: TodoItemPriority = .normal,
          deadline: Date? = nil,
@@ -32,6 +34,7 @@ struct TodoItem: Equatable, Identifiable {
          createdAt: Int? = nil,
          updatedAt: Int? = nil,
          isDirty: Bool = false) {
+        self.persId = persId
         self.id = id
         self.text = text
         self.priority = priority
@@ -47,7 +50,8 @@ struct TodoItem: Equatable, Identifiable {
                 priority: TodoItemPriority? = nil,
                 isCompleted: Bool? = nil,
                 updatedAt: Int = Date().integer) -> TodoItem {
-        TodoItem(id: self.id,
+        TodoItem(persId: self.persId,
+                 id: UUID().uuidString,
                  text: text ?? self.text,
                  priority: priority ?? self.priority,
                  deadline: self.deadline,
@@ -58,7 +62,8 @@ struct TodoItem: Equatable, Identifiable {
     }
 
     func update(isDirty: Bool) -> TodoItem {
-        TodoItem(id: self.id,
+        TodoItem(persId: self.persId,
+                 id: id,
                  text: text,
                  priority: priority,
                  deadline: deadline,
@@ -69,7 +74,8 @@ struct TodoItem: Equatable, Identifiable {
     }
 
     func update(deadline: Date?) -> TodoItem {
-        TodoItem(id: self.id,
+        TodoItem(persId: self.persId,
+                 id: UUID().uuidString,
                  text: text,
                  priority: priority,
                  deadline: deadline,
@@ -80,7 +86,7 @@ struct TodoItem: Equatable, Identifiable {
     }
 
     static func == (lhs: TodoItem, rhs: TodoItem) -> Bool {
-        lhs.id == rhs.id &&
+        lhs.persId == rhs.persId &&
         lhs.text == rhs.text &&
         lhs.priority == rhs.priority &&
         lhs.deadline?.timeIntervalSince1970 == rhs.deadline?.timeIntervalSince1970 &&
