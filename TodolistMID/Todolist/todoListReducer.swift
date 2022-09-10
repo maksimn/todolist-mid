@@ -44,7 +44,7 @@ private func nextState(create item: TodoItem, _ state: TodoListState) -> TodoLis
 
 private func nextState(toggleCompletionFor item: TodoItem, _ state: TodoListState) -> TodoListState {
     var state = state
-    guard let index = state.items.firstIndex(where: { $0.id == item.id }) else {
+    guard let index = state.items.firstIndex(where: { $0.persId == item.persId }) else {
         return state
     }
 
@@ -63,7 +63,7 @@ private func nextState(toggleCompletionFor item: TodoItem, _ state: TodoListStat
 }
 
 private func nextState(delete item: TodoItem, _ state: TodoListState) -> TodoListState {
-    guard let index = state.items.firstIndex(where: { $0.id == item.id }) else { return state }
+    guard let index = state.items.firstIndex(where: { $0.persId == item.persId }) else { return state }
     let item = state.items[index]
     var state = state
 
@@ -90,7 +90,7 @@ private func nextState(editorItemSaved state: TodoListState) -> TodoListState {
     }
     var newState = state
 
-    if let index = newState.items.firstIndex(where: { $0.id == item.id }) {
+    if let index = newState.items.firstIndex(where: { $0.persId == item.persId }) {
         newState.items[index] = item
     } else {
         newState.items.append(item)
@@ -105,7 +105,7 @@ private func nextState(editorItemDeleted state: TodoListState) -> TodoListState 
     }
     var state = state
 
-    if let index = state.items.firstIndex(where: { $0.id == deletedItem.id }) {
+    if let index = state.items.firstIndex(where: { $0.persId == deletedItem.persId }) {
         state.items.remove(at: index)
     }
 

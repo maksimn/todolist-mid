@@ -13,13 +13,31 @@ struct TodoListView: View {
     let store: Store<TodoListState, TodoListAction>
 
     var body: some View {
-        NavigationView {
-            WithViewStore(self.store) { viewStore in
+        WithViewStore(self.store) { viewStore in
+            NavigationView {
                 VStack {
                     List {
-                        ForEach(viewStore.state.items) {
-                            TodoItemCell(item: $0)
+                        ForEach(viewStore.state.items) { item in
+                            NavigationLink(destination: navigateToEditor(item)) {
+                                TodoItemCell(item: item)
+                                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                        Button(action: {
+                                            viewStore.send(.toggleItemCompletion(item))
+                                        }, label: {
+                                            Image("finished-todo-inverse")
+                                        })
+                                        .tint(.green)
+                                    }
+                            }
                         }
+                        .onDelete { indexSet in
+                            for index in indexSet {
+                                let item = viewStore.state.items[index]
+
+                                viewStore.send(.deleteItem(item))
+                            }
+                        }
+
                         NewTodoItemCell(
                             text: "",
                             onTextEnter: { text in
@@ -29,23 +47,29 @@ struct TodoListView: View {
                     }
 
                     Spacer()
-                    NavigationLink(
-                        destination: NavigationLazyView(
-                            EditorView(
-                                store: store.scope(state: \.editorState, action: TodoListAction.editorAction)
-                            )
-                        )
-                    ) {
+                    NavigationLink(destination: navigateToEditor(nil)) {
                         Image("icon-plus")
                             .resizable()
                             .frame(width: 44, height: 44)
                             .padding(.bottom, 24)
                     }
                     .navigationTitle("Мои дела")
+                    .toolbar {
+                        EditButton()
+                    }
                 }
                 .background(Color(red: 0.97, green: 0.97, blue: 0.95))
             }
         }
+    }
+
+    private func navigateToEditor(_ initialItem: TodoItem?) -> NavigationLazyView<EditorView> {
+        NavigationLazyView(
+            EditorView(
+                store: store.scope(state: \.editorState, action: TodoListAction.editorAction),
+                initialItem: initialItem
+            )
+        )
     }
 }
 
@@ -95,9 +119,6 @@ struct TodoItemCell: View {
                     }
                 }
             }
-
-            Image("right-arrow")
-                .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 8))
         }
     }
 }
@@ -119,7 +140,7 @@ struct NewTodoItemCell: View {
                 self.onTextEnter(text)
                 text = ""
             }
-            .padding(.init(top: 4, leading: 24, bottom: 4, trailing: 16))
+            .padding(.init(top: 3, leading: 24, bottom: 3, trailing: 16))
         }
     }
 }
