@@ -10,5 +10,5 @@ enum TodoListAction: Equatable {
     case toggleItemCompletion(TodoItem)
     case deleteItem(TodoItem)
     case switchCompletedItemsVisibility
-    case editorAction(EditorAction)
+    case editorAction(Editor.Action)
 }

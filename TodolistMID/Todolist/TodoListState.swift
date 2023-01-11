@@ -9,5 +9,5 @@ struct TodoListState: Equatable {
     var items: [TodoItem]
     var completedItemCount: Int
     var areCompleteItemsVisible: Bool
-    var editorState: EditorState?
+    var editorState: Editor.State
 }

@@ -85,9 +85,7 @@ private func nextState(switchCompletedItemsVisibilityFor state: TodoListState) -
 }
 
 private func nextState(editorItemSaved state: TodoListState) -> TodoListState {
-    guard let item = state.editorState?.item else {
-        return state
-    }
+    let item = state.editorState.item
     var newState = state
 
     if let index = newState.items.firstIndex(where: { $0.persId == item.persId }) {
@@ -100,9 +98,7 @@ private func nextState(editorItemSaved state: TodoListState) -> TodoListState {
 }
 
 private func nextState(editorItemDeleted state: TodoListState) -> TodoListState {
-    guard let deletedItem = state.editorState?.item else {
-        return state
-    }
+    let deletedItem = state.editorState.item
     var state = state
 
     if let index = state.items.firstIndex(where: { $0.persId == deletedItem.persId }) {
