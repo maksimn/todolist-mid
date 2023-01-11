@@ -23,7 +23,7 @@ private let state = TodoListState(
     ],
     completedItemCount: 0,
     areCompleteItemsVisible: false,
-    editorState: nil
+    editorState: Editor.State(mode: .creating, item: TodoItem(), isDeadlinePickerHidden: true)
 )
 
 private let reducer = Reducer<TodoListState, TodoListAction, TodoListEnvironment> { _, _, _ in

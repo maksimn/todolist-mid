@@ -12,15 +12,19 @@ private let initialTodoListState = TodoListState(
     items: [],
     completedItemCount: 0,
     areCompleteItemsVisible: false,
-    editorState: nil
+    editorState: Editor.State(mode: .creating, item: TodoItem(), isDeadlinePickerHidden: true)
 )
 
-private let reducer = todoListReducer.combined(
-    with: editorReducer.pullback(
+private let reducer = Reducer<TodoListState, TodoListAction, TodoListEnvironment>.combine(
+    AnyReducer { _ in
+        Editor()
+    }
+    .pullback(
         state: \.editorState,
         action: /TodoListAction.editorAction,
-        environment: { _ in EditorEnvironment() }
-    )
+        environment: { $0 }
+    ),
+    todoListReducer
 ).debug()
 
 @main

@@ -5,6 +5,8 @@
 //  Created by Maksim Ivanov on 29.01.2022.
 //
 
+// swiftlint:disable multiple_closures_with_trailing_closure
+
 import ComposableArchitecture
 import SwiftUI
 
@@ -13,17 +15,17 @@ struct EditorView: View {
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
 
-    private let store: Store<EditorState?, EditorAction>
+    let store: StoreOf<Editor>
 
-    init(store: Store<EditorState?, EditorAction>, initialItem: TodoItem?) {
+    init(store: StoreOf<Editor>, initialItem: TodoItem?) {
         self.store = store
-        ViewStore(store).send(EditorAction.initEditor(item: initialItem))
+        ViewStore(store).send(Editor.Action.initEditor(item: initialItem))
     }
 
     var body: some View {
-        WithViewStore(self.store) { viewStore in
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
             ScrollView {
-                TextEditor(text: viewStore.binding(get: { $0?.item.text ?? "" }, send: EditorAction.editorTextChanged))
+                TextEditor(text: viewStore.binding(get: { $0.item.text }, send: { .editorTextChanged(text: $0) }))
                     .cornerRadius(6)
                     .frame(height: 120)
                     .padding(.init(top: 17, leading: 24, bottom: 16, trailing: 24))
@@ -34,7 +36,7 @@ struct EditorView: View {
                             Spacer().frame(maxWidth: .infinity)
                             Picker("Важность", selection: viewStore.binding(
                                 get: { state in
-                                    mapPriorityToString(state?.item.priority ?? .normal)
+                                    mapPriorityToString(state.item.priority)
                                 },
                                 send: { value in
                                     .editorPriorityChanged(priority: mapStringToPriority(value))
@@ -50,13 +52,13 @@ struct EditorView: View {
                         HStack {
                             VStack {
                                 Text("Сделать до")
-                                if viewStore.state?.item.deadline != nil {
+                                if viewStore.state.item.deadline != nil {
                                     Button(
                                         action: {
                                             viewStore.send(.toggleDeadlinePickerVisibility)
                                         },
                                         label: {
-                                            Text(viewStore.state?.item.deadline?.formattedDate ?? "")
+                                            Text(viewStore.state.item.deadline?.formattedDate ?? "")
                                                 .font(.system(size: 14))
                                         }
                                     )
@@ -66,9 +68,9 @@ struct EditorView: View {
                             Toggle(
                                 "",
                                 isOn: viewStore.binding(
-                                    get: { $0?.item.deadline != nil },
+                                    get: { $0.item.deadline != nil },
                                     send: .editorDeadlineChanged(
-                                        deadline: viewStore.state?.item.deadline == nil ? Date() : nil
+                                        deadline: viewStore.state.item.deadline == nil ? Date() : nil
                                     )
                                 )
                             )
@@ -78,12 +80,12 @@ struct EditorView: View {
                     .background(.white)
                     .cornerRadius(16)
 
-                    if !(viewStore.state?.isDeadlinePickerHidden ?? true) {
+                    if !viewStore.state.isDeadlinePickerHidden {
                         DatePicker(
                             "",
                             selection: viewStore.binding(
-                                get: { $0?.item.deadline ?? Date(timeIntervalSince1970: 0)},
-                                send: EditorAction.editorDeadlineChanged
+                                get: { $0.item.deadline ?? Date(timeIntervalSince1970: 0)},
+                                send: { .editorDeadlineChanged(deadline: $0) }
                             ),
                             displayedComponents: [.date]
                         )
@@ -94,13 +96,11 @@ struct EditorView: View {
                         Spacer()
                         Button(
                             action: {
-                                viewStore.send(EditorAction.editorItemDeleted)
+                                viewStore.send(.editorItemDeleted)
                             },
                             label: {
                                 Text("Удалить")
-                                    .foregroundColor(
-                                        (viewStore.state?.canItemBeRemoved ?? false) ? Color.red : Color.gray
-                                    )
+                                    .foregroundColor(viewStore.state.canItemBeRemoved ? Color.red : Color.gray)
                             }
                         )
                         .padding(.init(top: 12, leading: 0, bottom: 12, trailing: 0))
@@ -117,7 +117,7 @@ struct EditorView: View {
             .navigationBarItems(
                 leading: Button(
                     action: {
-                        viewStore.send(EditorAction.close)
+                        viewStore.send(.close)
                         self.presentationMode.wrappedValue.dismiss()
                     },
                     label: {
@@ -126,13 +126,11 @@ struct EditorView: View {
                 ),
                 trailing: Button(
                     action: {
-                        viewStore.send(EditorAction.editorItemSaved)
+                        viewStore.send(.editorItemSaved)
                     },
                     label: {
                         Text("Сохранить")
-                            .foregroundColor(
-                                (viewStore.state?.canItemBeSaved ?? false) ? Color.blue : Color.gray
-                            )
+                            .foregroundColor(viewStore.state.canItemBeSaved ? Color.blue : Color.gray)
                     }
                 )
             )
