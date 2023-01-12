@@ -55,9 +55,6 @@ struct Editor: ReducerProtocol {
         case .initEditor(let item):
             state = nextStateForInitEditorAction(item: item)
 
-        case .close:
-            state = createEmptyState()
-
         case .editorTextChanged(let text):
             state.item = state.item.update(text: text)
 
@@ -75,13 +72,16 @@ struct Editor: ReducerProtocol {
             state.savedItem = state.item
 
         case .editorItemDeleted:
-            state = createEmptyState()
+            state = Editor.empty()
+
+        default:
+            return .none
         }
 
         return .none
     }
 
-    private func createEmptyState() -> State {
+    static func empty() -> State {
         State(
             mode: .creating,
             item: TodoItem(),
@@ -91,7 +91,7 @@ struct Editor: ReducerProtocol {
     }
 
     private func nextStateForInitEditorAction(item: TodoItem?) -> State {
-        let emptyState = createEmptyState()
+        let emptyState = Editor.empty()
 
         if let item = item {
             return State(

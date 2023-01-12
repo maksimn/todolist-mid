@@ -1,13 +1,13 @@
 //
-//  TodoListView+Cell.swift
+//  TodoItemView.swift
 //  TodolistMID
 //
-//  Created by Maksim Ivanov on 11.10.2022.
+//  Created by Maksim Ivanov on 12.01.2023.
 //
 
 import SwiftUI
 
-struct TodoItemCell: View {
+struct TodoItemView: View {
 
     @State
     var item: TodoItem
@@ -57,7 +57,7 @@ struct TodoItemCell: View {
     }
 }
 
-struct NewTodoItemCell: View {
+struct NewTodoItemView: View {
 
     @State
     var text: String

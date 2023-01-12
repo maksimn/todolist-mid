@@ -1,16 +1,16 @@
 //
-//  TodolistView.swift
+//  MainTodoListView.swift
 //  TodolistMID
 //
-//  Created by Maksim Ivanov on 31.01.2022.
+//  Created by Maksim Ivanov on 12.01.2023.
 //
 
 import ComposableArchitecture
 import SwiftUI
 
-struct TodoListView: View {
+struct MainTodoListView: View {
 
-    let store: Store<TodoListState, TodoListAction>
+    let store: StoreOf<MainTodoList>
 
     var body: some View {
         WithViewStore(self.store) { viewStore in
@@ -42,7 +42,7 @@ struct TodoListView: View {
                                 viewStore.state.items.filter { !$0.isCompleted }
                             ) { item in
                                 NavigationLink(destination: navigateToEditor(item)) {
-                                    TodoItemCell(item: item)
+                                    TodoItemView(item: item)
                                         .swipeActions(edge: .leading, allowsFullSwipe: false) {
                                             Button(action: {
                                                 viewStore.send(.toggleItemCompletion(item))
@@ -61,7 +61,7 @@ struct TodoListView: View {
                                 }
                             }
 
-                            NewTodoItemCell(
+                            NewTodoItemView(
                                 text: "",
                                 onTextEnter: { text in
                                     viewStore.send(.createItem(TodoItem(text: text)))
@@ -90,7 +90,10 @@ struct TodoListView: View {
     private func navigateToEditor(_ initialItem: TodoItem?) -> NavigationLazyView<EditorView> {
         NavigationLazyView(
             EditorView(
-                store: store.scope(state: \.editorState, action: TodoListAction.editorAction),
+                store: store.scope(
+                    state: \.editor,
+                    action: { MainTodoList.Action.editor($0) }
+                ),
                 initialItem: initialItem
             )
         )
