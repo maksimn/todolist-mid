@@ -70,10 +70,6 @@ struct NewTodoItemView: View {
                 "Новое",
                 text: $text
             )
-            .onSubmit {
-                self.onTextEnter(text)
-                text = ""
-            }
             .padding(.init(top: 3, leading: 24, bottom: 3, trailing: 16))
         }
     }

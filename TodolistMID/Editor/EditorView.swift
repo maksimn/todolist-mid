@@ -77,7 +77,6 @@ struct EditorView: View {
                         }
                     }
                     .padding(.init(top: 17, leading: 24, bottom: 16, trailing: 24))
-                    .background(.white)
                     .cornerRadius(16)
 
                     if !viewStore.state.isDeadlinePickerHidden {
@@ -106,7 +105,6 @@ struct EditorView: View {
                         .padding(.init(top: 12, leading: 0, bottom: 12, trailing: 0))
                         Spacer()
                     }
-                    .background(.white)
                     .cornerRadius(16)
                 }
                 .padding(.init(top: 0, leading: 24, bottom: 16, trailing: 24))

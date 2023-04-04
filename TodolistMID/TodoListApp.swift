@@ -33,7 +33,7 @@ private let reducer = Reducer<MainTodoList.State, MainTodoList.Action, Empty>.co
 
 @main
 struct TodoListApp: App {
-    
+
     var body: some Scene {
         WindowGroup {
             MainTodoListView(

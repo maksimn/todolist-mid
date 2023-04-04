@@ -43,14 +43,6 @@ struct MainTodoListView: View {
                             ) { item in
                                 NavigationLink(destination: navigateToEditor(item)) {
                                     TodoItemView(item: item)
-                                        .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                                            Button(action: {
-                                                viewStore.send(.toggleItemCompletion(item))
-                                            }, label: {
-                                                Image("finished-todo-inverse")
-                                            })
-                                            .tint(.green)
-                                        }
                                 }
                             }
                             .onDelete { indexSet in
