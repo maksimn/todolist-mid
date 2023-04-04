@@ -42,7 +42,7 @@ class TodoListCacheImp: TodoListCache {
 
             return todoItemMOList.map { $0.todoItem }
         } catch {
-            logger.log("\(error)", .error)
+            logger.log("\(error)")
             return []
         }
     }
@@ -61,7 +61,7 @@ class TodoListCacheImp: TodoListCache {
                     completion(nil)
                 }
             } catch {
-                self?.logger.log("\(error)", .error)
+                self?.logger.log("\(error)")
                 DispatchQueue.main.async {
                     completion(error)
                 }
@@ -90,7 +90,7 @@ class TodoListCacheImp: TodoListCache {
                     completion(nil)
                 }
             } catch {
-                self?.logger.log("\(error)", .error)
+                self?.logger.log("\(error)")
                 DispatchQueue.main.async {
                     completion(error)
                 }
@@ -119,7 +119,7 @@ class TodoListCacheImp: TodoListCache {
                     completion(nil)
                 }
             } catch {
-                self?.logger.log("\(error)", .error)
+                self?.logger.log("\(error)")
                 DispatchQueue.main.async {
                     completion(error)
                 }
@@ -146,7 +146,7 @@ class TodoListCacheImp: TodoListCache {
                     completion(nil)
                 }
             } catch let error as NSError {
-                self?.logger.log("\(error)", .error)
+                self?.logger.log("\(error)")
                 DispatchQueue.main.async {
                     completion(error)
                 }

@@ -24,8 +24,6 @@
 		0CA4203E296EC43600CD54F8 /* LoggerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA4203C296EC43600CD54F8 /* LoggerImpl.swift */; };
 		0CA58FC528C06F4200A68BCD /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA58FC428C06F4200A68BCD /* NavigationLazyView.swift */; };
 		0CD2283928C7AF7200913DD3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD2283828C7AF7100913DD3 /* Theme.swift */; };
-		0CD84DD429DCCC2200EB62E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD84DD229DCCC2200EB62E9 /* AppDelegate.swift */; };
-		0CD84DD529DCCC2200EB62E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD84DD329DCCC2200EB62E9 /* SceneDelegate.swift */; };
 		0CE40B3A27A5DA5900E5EF9D /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE40B3927A5DA5900E5EF9D /* EditorView.swift */; };
 		0CFDD15C296F813C00A0522F /* MainTodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFDD15B296F813C00A0522F /* MainTodoList.swift */; };
 		0CFDD15E296F814900A0522F /* MainTodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFDD15D296F814900A0522F /* MainTodoListView.swift */; };
@@ -70,8 +68,6 @@
 		0CA4203C296EC43600CD54F8 /* LoggerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerImpl.swift; sourceTree = "<group>"; };
 		0CA58FC428C06F4200A68BCD /* NavigationLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLazyView.swift; sourceTree = "<group>"; };
 		0CD2283828C7AF7100913DD3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		0CD84DD229DCCC2200EB62E9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0CD84DD329DCCC2200EB62E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0CD84DD629DCCCF100EB62E9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CE40B3927A5DA5900E5EF9D /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		0CFDD15B296F813C00A0522F /* MainTodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTodoList.swift; sourceTree = "<group>"; };
@@ -135,8 +131,6 @@
 				0C66877628BF53780007538E /* DataClass */,
 				0CE40B3827A5DA3F00E5EF9D /* Editor */,
 				0CFDD15A296F811F00A0522F /* MainTodoList */,
-				0CD84DD229DCCC2200EB62E9 /* AppDelegate.swift */,
-				0CD84DD329DCCC2200EB62E9 /* SceneDelegate.swift */,
 				0C16DC6F27A43F120033CAC3 /* TodoListApp.swift */,
 				0CD2283828C7AF7100913DD3 /* Theme.swift */,
 				0C16DC7327A43F150033CAC3 /* Assets.xcassets */,
@@ -402,11 +396,9 @@
 				0CA4203E296EC43600CD54F8 /* LoggerImpl.swift in Sources */,
 				0CFDD15C296F813C00A0522F /* MainTodoList.swift in Sources */,
 				0C16DC7027A43F120033CAC3 /* TodoListApp.swift in Sources */,
-				0CD84DD429DCCC2200EB62E9 /* AppDelegate.swift in Sources */,
 				0CA42036296EC2EC00CD54F8 /* TodoItemMO.swift in Sources */,
 				0CFDD15E296F814900A0522F /* MainTodoListView.swift in Sources */,
 				0CD2283928C7AF7200913DD3 /* Theme.swift in Sources */,
-				0CD84DD529DCCC2200EB62E9 /* SceneDelegate.swift in Sources */,
 				0C66877828BF53850007538E /* TodoItem.swift in Sources */,
 				0CA42038296EC2EC00CD54F8 /* TodoListPersistentContainer.swift in Sources */,
 			);
@@ -496,7 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -552,7 +544,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
