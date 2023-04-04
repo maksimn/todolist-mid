@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C16DC7027A43F120033CAC3 /* TodoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C16DC6F27A43F120033CAC3 /* TodoListApp.swift */; };
-		0C16DC7427A43F150033CAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C16DC7327A43F150033CAC3 /* Assets.xcassets */; };
-		0C16DC7727A43F150033CAC3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C16DC7627A43F150033CAC3 /* Preview Assets.xcassets */; };
 		0C16DC8B27A43F150033CAC3 /* TodolistMIDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C16DC8A27A43F150033CAC3 /* TodolistMIDUITests.swift */; };
 		0C16DC8D27A43F150033CAC3 /* TodolistMIDUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C16DC8C27A43F150033CAC3 /* TodolistMIDUITestsLaunchTests.swift */; };
 		0C66877828BF53850007538E /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C66877728BF53850007538E /* TodoItem.swift */; };
@@ -28,7 +26,6 @@
 		0CD2283928C7AF7200913DD3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD2283828C7AF7100913DD3 /* Theme.swift */; };
 		0CD84DD429DCCC2200EB62E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD84DD229DCCC2200EB62E9 /* AppDelegate.swift */; };
 		0CD84DD529DCCC2200EB62E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD84DD329DCCC2200EB62E9 /* SceneDelegate.swift */; };
-		0CD84DD729DCCCF100EB62E9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CD84DD629DCCCF100EB62E9 /* Info.plist */; };
 		0CE40B3A27A5DA5900E5EF9D /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE40B3927A5DA5900E5EF9D /* EditorView.swift */; };
 		0CFDD15C296F813C00A0522F /* MainTodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFDD15B296F813C00A0522F /* MainTodoList.swift */; };
 		0CFDD15E296F814900A0522F /* MainTodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFDD15D296F814900A0522F /* MainTodoListView.swift */; };
@@ -56,7 +53,6 @@
 		0C16DC6C27A43F120033CAC3 /* Todolist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todolist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C16DC6F27A43F120033CAC3 /* TodoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListApp.swift; sourceTree = "<group>"; };
 		0C16DC7327A43F150033CAC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0C16DC7627A43F150033CAC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0C16DC7C27A43F150033CAC3 /* TodolistMIDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodolistMIDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C16DC8627A43F150033CAC3 /* TodolistMIDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodolistMIDUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C16DC8A27A43F150033CAC3 /* TodolistMIDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodolistMIDUITests.swift; sourceTree = "<group>"; };
@@ -144,17 +140,8 @@
 				0C16DC6F27A43F120033CAC3 /* TodoListApp.swift */,
 				0CD2283828C7AF7100913DD3 /* Theme.swift */,
 				0C16DC7327A43F150033CAC3 /* Assets.xcassets */,
-				0C16DC7527A43F150033CAC3 /* Preview Content */,
 			);
 			path = TodolistMID;
-			sourceTree = "<group>";
-		};
-		0C16DC7527A43F150033CAC3 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				0C16DC7627A43F150033CAC3 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		0C16DC7F27A43F150033CAC3 /* TodolistMIDTests */ = {
@@ -358,9 +345,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C16DC7727A43F150033CAC3 /* Preview Assets.xcassets in Resources */,
-				0C16DC7427A43F150033CAC3 /* Assets.xcassets in Resources */,
-				0CD84DD729DCCCF100EB62E9 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
